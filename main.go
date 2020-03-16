@@ -57,5 +57,6 @@ func main() {
 		ctx.SetStatusCode(405)
 	}
 
+	api.Log.Info().Msg("Starting HTTP server on port: " + port)
 	fasthttp.ListenAndServe(addr, r.Handler)
 }
