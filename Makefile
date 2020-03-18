@@ -28,7 +28,7 @@ stop:
 # Compile go to binary
 bin: clean
 	mkdir -p $(BIN_OUTPUT)
-	$(GO_BUILD_ENV) go build -v -o $(BIN_OUTPUT) .
+	go build -v -o $(BIN_OUTPUT) .
 
 # Clean the compiled go binary
 clean:
