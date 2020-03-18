@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	cors "github.com/AdhityaRamadhanus/fasthttpcors"
 	"github.com/buaazp/fasthttprouter"
 	"github.com/negrel/apip/api"
 	"github.com/rs/zerolog/log"
@@ -23,6 +24,14 @@ func getenv(key, fallback string) string {
 func main() {
 	var port string = getenv("PORT", "3000")
 	var addr string = fmt.Sprintf(":%v", port)
+	var corsAllowedOrigins string = getenv("DOMAIN_NAME", "")
+
+	withCors := cors.NewCorsHandler(cors.Options{
+		AllowedOrigins:   []string{corsAllowedOrigins},
+		AllowedHeaders:   []string{},
+		AllowedMethods:   []string{"GET"},
+		AllowCredentials: false,
+	})
 
 	r := fasthttprouter.New()
 
@@ -59,5 +68,5 @@ func main() {
 	}
 
 	log.Info().Msg("Starting HTTP server on port: " + port)
-	fasthttp.ListenAndServe(addr, r.Handler)
+	fasthttp.ListenAndServe(addr, withCors.CorsMiddleware(r.Handler))
 }
