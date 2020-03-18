@@ -27,7 +27,7 @@ func main() {
 	var corsAllowedOrigins string = getenv("DOMAIN_NAME", "")
 
 	withCors := cors.NewCorsHandler(cors.Options{
-		AllowedOrigins:   []string{corsAllowedOrigins},
+		AllowedOrigins:   []string{corsAllowedOrigins, "*"},
 		AllowedHeaders:   []string{},
 		AllowedMethods:   []string{"GET"},
 		AllowCredentials: false,
