@@ -3,6 +3,7 @@ package api
 import (
 	"net"
 
+	"github.com/rs/zerolog/log"
 	"github.com/valyala/fasthttp"
 )
 
@@ -22,7 +23,7 @@ func GetIP(ctx *fasthttp.RequestCtx) Response {
 	// https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded
 	var ip net.IP = net.ParseIP(string(header.Peek(fasthttp.HeaderForwarded)))
 	if len(ip) != 0 {
-		Log.Info().Msg("IP Found via standard Forwarded header field.")
+		log.Info().Msg("IP Found via standard Forwarded header field.")
 		goto ipFound
 	}
 
@@ -31,7 +32,7 @@ func GetIP(ctx *fasthttp.RequestCtx) Response {
 	ip = net.ParseIP(string(header.Peek(fasthttp.HeaderXForwardedFor)))
 
 	if len(ip) != 0 {
-		Log.Info().Msg("IP Found via non-standard X-Forwarded-For header field.")
+		log.Info().Msg("IP Found via non-standard X-Forwarded-For header field.")
 		goto ipFound
 	}
 
@@ -40,7 +41,7 @@ func GetIP(ctx *fasthttp.RequestCtx) Response {
 
 	// Valid ip address (different from 0.0.0.0 and ::0)
 	if !ip.Equal(net.IPv4zero) && !ip.Equal(net.IPv6zero) {
-		Log.Info().Msg("IP Found using remote ip. (no proxy)")
+		log.Info().Msg("IP Found using remote ip. (no proxy)")
 		goto ipFound
 	}
 
@@ -48,7 +49,7 @@ func GetIP(ctx *fasthttp.RequestCtx) Response {
 	// IP NOT FOUND
 	// ---------------------------------------------------
 
-	Log.Error().Msg("IP NOT FOUND")
+	log.Error().Msg("IP NOT FOUND")
 
 	ctx.SetStatusCode(500)
 
@@ -67,7 +68,7 @@ ipFound:
 		"version": getIPVersion(ip),
 	}
 
-	Log.Info().Str("ip", res["ip"]).Str("version", res["version"]).Msg("")
+	log.Info().Str("ip", res["ip"]).Str("version", res["version"]).Msg("")
 
 	return res
 }

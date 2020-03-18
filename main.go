@@ -6,6 +6,7 @@ import (
 
 	"github.com/buaazp/fasthttprouter"
 	"github.com/negrel/apip/api"
+	"github.com/rs/zerolog/log"
 	"github.com/valyala/fasthttp"
 )
 
@@ -57,6 +58,6 @@ func main() {
 		ctx.SetStatusCode(405)
 	}
 
-	api.Log.Info().Msg("Starting HTTP server on port: " + port)
+	log.Info().Msg("Starting HTTP server on port: " + port)
 	fasthttp.ListenAndServe(addr, r.Handler)
 }

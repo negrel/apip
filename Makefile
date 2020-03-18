@@ -14,7 +14,7 @@ build-nc:
 
 # Run container on configured port
 run:
-	docker run -i -t --rm --env-file=.env -p=$(PORT):$(PORT) --name="$(APP_NAME)" $(APP_NAME)
+	docker run -i -t --rm --env-file=".env" -p=$(PORT):$(PORT) --name=$(APP_NAME) $(APP_NAME)
 
 # Run container on configured port
 up: build run
@@ -36,4 +36,4 @@ clean:
 
 # Deploy to heroku
 heroku: build
-	heroku container:push web -a $(HEORKU_APP)
+	heroku container:push web -a $(HEROKU_APP)

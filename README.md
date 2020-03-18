@@ -5,7 +5,7 @@
 
 ## What is APIP
 
-**APIP** is an **open source** public IP API that focuses on simplicity. It can be really useful if you're looking for a way to get your public IP from **command line**, **script** or **programs**. There is a public server for test purpose : [apip.negrel.dev](https://apip.negrel.dev/) hosted for **free** on [back4app.com](https://back4app.com) with a limit of **10 req/s** :cry:. If your looking for a more reliable public server for public IP API I recommend you [**ipify.org**](https://ipify.org).
+**APIP** is an **open source** public IP API that focuses on simplicity. It can be really useful if you're looking for a way to get your public IP from **command line**, **script** or **programs**. There is a public server for test purpose : [apip.negrel.dev](https://apip.negrel.dev/) hosted on a **free** dynos on [heroku.com](https://heroku.com). If your looking for a more reliable public server for public IP API I recommend you [**ipify.org**](https://ipify.org).
 
 ## Setup a local APIP server
 
