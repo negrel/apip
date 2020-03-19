@@ -39,7 +39,18 @@ func (r response) ToTXT() string {
 
 // ToXML convert the response to XML.
 func (r response) ToXML() string {
-	return r.string()
+	var str strings.Builder
+
+	str.WriteString("<?xml version=\"1.0\" encoding=\"UTF-8\"?>")
+	str.WriteString("<query>")
+
+	for key, value := range r {
+		str.WriteString(fmt.Sprintf("<%v>%v</%v>", key, value, key))
+	}
+
+	str.WriteString("</query>")
+
+	return str.String()
 }
 
 func (r response) string() string {
