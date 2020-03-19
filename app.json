@@ -1,0 +1,7 @@
+{
+  "name": "APIP",
+  "description": "A free public IP API using fasthttp & zerolog",
+  "repository": "https://github.com/negrel/apip",
+  "logo": "",
+  "keywords": ["golang", "fasthttprouter", "zerolog", "ip", "public", "api"]
+}

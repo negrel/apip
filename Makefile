@@ -4,19 +4,19 @@ include $(cnf)
 export $(shell sed 's/=.*//' $(cnf))
 
 # DOCKER TASKS
-# Build the container
+# Build the image
 build:
 	docker build -t $(APP_NAME) .
 
-# Build the container without caching
+# Build the image without caching
 build-nc:
 	docker build --no-cache -t $(APP_NAME) .
 
-# Run container on configured port
+# Run the image on configured port
 run:
 	docker run -i -t --rm --env-file=".env" -p=$(PORT):$(PORT) --name=$(APP_NAME) $(APP_NAME)
 
-# Run container on configured port
+# Build the image then run it on configured port
 up: build run
 
 # Stop and remove a running container
