@@ -41,7 +41,7 @@ This will build the go code to a binary file named "apip". To launch the server 
 $ ./apip
 ```
 
-# Using the Makefile
+### Using the Makefile
 
 _Take a look at the exemple.env file and write your own .env file._
 
